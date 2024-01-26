@@ -19,31 +19,30 @@
       $database = "Quizz_app";
 
       try {
-        // Create a PDO instance
-        $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+        $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        // Set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-        echo "<p>Connected successfully</p>";
-    
-        // Perform database operations here
-    
-      } catch (PDOException $e) {
-          die("Connection failed: " . $e->getMessage());
-      }
-      
-      $conn = null;
-    ?>
+        $queryPreguntas = "SELECT * FROM `Preguntas` WHERE `Cuestionario_quiz_id` = 1";
+        $statementPreguntas = $connection->prepare($queryPreguntas);
+        $statementPreguntas->execute();
 
-    <!-- <div class="question">
-      <p>10. ¿Cuál de los siguientes se utiliza para crear un objeto en PHP?</p>
-      <label><input type="radio" name="q10" value="a Answer"> a) new (Respuesta correcta)</label>
-      <label><input type="radio" name="q10" value="b"> b) objeto</label>
-      <label><input type="radio" name="q10" value="c"> c) crear</label>
-      <label><input type="radio" name="q10" value="d"> d) instancia</label>
-    </div> -->
-
+        $i = 1;
+        while ($row = $statementPreguntas->fetch(PDO::FETCH_ASSOC)) {
+          echo "<div class='question'>";
+            echo "<p>$i. " . $row["question_text"] . "</p>";
+            echo "<label><input type='radio' name='q$i' value='a'> a) " . $row["option_a"] . "</label>";
+            echo "<label><input type='radio' name='q$i' value='b'> b) " . $row["option_b"] . "</label>";
+            echo "<label><input type='radio' name='q$i' value='c'> c) " . $row["option_c"] . "</label>";
+            echo "<label><input type='radio' name='q$i' value='d'> d) " . $row["option_d"] . "</label>";
+          echo "</div>";
+          $i++;
+        }
+        } catch (PDOException $e) {
+          echo "Error: " . $e->getMessage();
+        } finally {
+          $connection = null;
+        }
+      ?>
     <input type="submit" value="Submit">
     <a href="?retake=true">Reintentar formulario</a>
   </form>
@@ -64,18 +63,37 @@
         
         $lista_respuestas = [$q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10];
 
-        for ($i = 0; $i < count($lista_respuestas); $i++) {
-          if (empty($lista_respuestas[$i])) {
-            $lista_respuestas[$i] = "";
+        $servername = "db";
+        $username = "root";
+        $password = "pestillo";
+        $database = "Quizz_app";
+  
+        try {
+          $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+          $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          
+          $queryPreguntas = "SELECT * FROM `Preguntas` WHERE `Cuestionario_quiz_id` = 1";
+          $statementPreguntas = $connection->prepare($queryPreguntas);
+          $statementPreguntas->execute();
+  
+          $i = 0;
+          while ($row = $statementPreguntas->fetch(PDO::FETCH_ASSOC)) {
+            if (empty($lista_respuestas[$i])) {
+              $lista_respuestas[$i] = "";
+            }
+            if ($row["correct_option"] === $lista_respuestas[$i]) {
+              echo "<p>- Pregunta " . ($i + 1) . ": Correcta</p>";
+              $nota++;
+            } else {
+              echo "<p>- Pregunta " . ($i + 1) . ": Incorrecta</p>";
+            }
+            $i++;
           }
-          if (str_contains($lista_respuestas[$i], 'Answer')) {
-            echo "<p>- Pregunta " . ($i + 1) . ": Correcta</p>";
-            $nota++;
-          } else {
-            echo "<p>- Pregunta " . ($i + 1) . ": Incorrecta</p>";
-          }
-        }
-      
+        } catch (PDOException $e) {
+          echo "Error: " . $e->getMessage();
+        } finally {
+          $connection = null;
+        }      
         echo "<p>Tu nota es: $nota</p>";
       }
     ?>
