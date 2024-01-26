@@ -37,12 +37,12 @@
           echo "</div>";
           $i++;
         }
-        } catch (PDOException $e) {
-          echo "Error: " . $e->getMessage();
-        } finally {
-          $connection = null;
-        }
-      ?>
+      } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+      } finally {
+        $connection = null;
+      }
+    ?>
     <input type="submit" value="Submit">
     <a href="?retake=true">Reintentar formulario</a>
   </form>
