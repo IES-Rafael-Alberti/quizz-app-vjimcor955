@@ -14,14 +14,14 @@ CREATE TABLE `Quizz_app-Parte_3`.`Pregunta` (
 );
 
 
-INSERT INTO `Pregunta` (`question_id`, `quiz_id`, `question_text`, `option_a`, `option_b`, `option_c`, `option_d`, `correct_option`) VALUES 
-('1', '1', '¿Qué significa PHP?', 'Página de inicio personal', 'Procesador de hipertexto', 'Procesador de hipervínculos privados', 'Página de enlace PHP', 'b'), 
-('2', '1', '¿Cuál de los siguientes NO es un tipo de dato de PHP?', 'Entero', 'Booleano', 'Carácter', 'Flotante', 'c'),
-('3', '1', '¿Cuál es el resultado de `echo "Hola" . " " . "Mundo";`?', 'HelloWorld', 'Hola Mundo', 'HelloWorld', '"Hola Mundo"', 'b'),
-('4', '1', 'En PHP, ¿qué bucle se utiliza para ejecutar un bloque de código un número especificado de veces?', 'Bucle for', 'Bucle while', 'Bucle do...while', 'Bucle foreach', 'a'),
-('5', '1', '¿Qué función de PHP se utiliza para abrir un archivo para escritura?', 'fopen', 'file_open', 'open_file', 'Ninguna de las anteriores', 'd'),
-('6', '1', '¿Cuál es el propósito de la superglobal `$_GET` en PHP?', 'Recuperar datos de un formulario con el método POST', 'Almacenar variables de sesión', 'Recuperar datos de la cadena de consulta URL', 'Definir constantes globales', 'c'),
-('7', '1', '¿Cuál de los siguientes es un ejemplo de constante mágica de PHP?', '$this', 'LINE', '$var', 'functionName()', 'b'),
-('8', '1', '¿Qué hace la función `include` en PHP?', 'Ejecuta un bloque de código solo si una condición es verdadera', 'Incluye y evalúa un archivo especificado', 'Define una nueva función', 'Genera un número aleatorio', 'b'),
-('9', '1', '¿En PHP, qué comprueba el operador `===`?', 'Igualdad', 'Asignación', 'Desigualdad', 'Comparación', 'a'),
-('10', '1', '¿Cuál de los siguientes se utiliza para crear un objeto en PHP?', 'new', 'objeto', 'crear', 'instancia', 'a')
+INSERT INTO `Pregunta` (`question_id`, `quiz_id`, `question_text`, `option_a`, `option_b`, `option_c`, `option_d`, `correct_option`, `question_type`, `question_details`) VALUES 
+('1', '1', '¿Qué significa PHP?', 'Página de inicio personal', 'Procesador de hipertexto', 'Procesador de hipervínculos privados', 'Página de enlace PHP', 'b', 'short_answer', 'Respuesta correcta única'), 
+('2', '1', '¿Cuál de los siguientes NO es un tipo de dato de PHP?', 'Entero', 'Booleano', 'Carácter', 'Flotante', 'c', 'short_answer', 'Respuesta correcta única'),
+('3', '1', '¿Cuál es el resultado de `echo "Hola" . " " . "Mundo";`?', 'HelloWorld', 'Hola Mundo', 'HelloWorld', '"Hola Mundo"', 'b', 'short_answer', 'Respuesta correcta única'),
+('4', '1', 'En PHP, ¿qué bucle se utiliza para ejecutar un bloque de código un número especificado de veces?', 'Bucle for', 'Bucle while', 'Bucle do...while', 'Bucle foreach', 'a', 'short_answer', 'Respuesta correcta única'),
+('5', '1', '¿Qué función de PHP se utiliza para abrir un archivo para escritura?', 'fopen', 'file_open', 'open_file', 'Ninguna de las anteriores', 'd', 'short_answer', 'Respuesta correcta única'),
+('6', '1', '¿Cuál es el propósito de la superglobal `$_GET` en PHP?', 'Recuperar datos de un formulario con el método POST', 'Almacenar variables de sesión', 'Recuperar datos de la cadena de consulta URL', 'Definir constantes globales', 'c', 'short_answer', 'Respuesta correcta única'),
+('7', '1', '¿Cuál de los siguientes es un ejemplo de constante mágica de PHP?', '$this', 'LINE', '$var', 'functionName()', 'b', 'short_answer', 'Respuesta correcta única'),
+('8', '1', '¿Qué hace la función `include` en PHP?', 'Ejecuta un bloque de código solo si una condición es verdadera', 'Incluye y evalúa un archivo especificado', 'Define una nueva función', 'Genera un número aleatorio', 'b', 'short_answer', 'Respuesta correcta única'),
+('9', '1', '¿En PHP, qué comprueba el operador `===`?', 'Igualdad', 'Asignación', 'Desigualdad', 'Comparación', 'a', 'short_answer', 'Respuesta correcta única'),
+('10', '1', '¿Cuál de los siguientes se utiliza para crear un objeto en PHP?', 'new', 'objeto', 'crear', 'instancia', 'a', 'short_answer', 'Respuesta correcta única')
