@@ -50,3 +50,23 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+.funcionalidades {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 50px;
+}
+
+.funcionalidades .login form {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.funcionalidades .register form {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
