@@ -1,4 +1,4 @@
-CREATE TABLE `Quizz_app-Parte_3`.`Pregunta` (
+CREATE TABLE `Quizz_app-Parte_4`.`Pregunta` (
     `question_id` INT NOT NULL , 
     `quiz_id` INT NOT NULL , 
     `question_text` TEXT NOT NULL , 
