@@ -1,3 +1,12 @@
+<?php
+  session_start();
+
+  // cerrar la sesion
+  if (isset($_GET["logout"])) {
+    session_destroy();
+    header("Location: index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +21,18 @@
   <form method="post">
     <h1>PHP Quiz - Parte 4</h1>
     <?php
+      // comprobar si hay usuario al que mantenerle la sesion
+      if (isset($_SESSION["username"])) {
+        echo "<p>Usuario: " . $_SESSION["username"] . "</p>";
+      } else {
+        echo "<p>Usuario: Invitado</p>";
+      }
+
+      // boton para cerrar la sesion en caso de que haya una iniciada
+      if (isset($_SESSION["username"])) {
+        echo "<p><a href='?logout=true'>Cerrar sesión</a></p>";
+      }
+
       $servername = "db";
       $username = "root";
       $password = "pestillo";
@@ -355,7 +376,9 @@
                 // Confirmacion del login del usuario
                 if ($row = $statementUsuario->fetch(PDO::FETCH_ASSOC)) {
                   if (password_verify($password, $row["password"])) {
-                    echo "<p>Se ha logeado el usuario correctamente</p>";
+                    // Guardar el useranme en la sesion
+                    $_SESSION["username"] = $username;
+                    echo "<p>Se ha logeado el usuario correctamente, actualiza la página para activar la sesion.</p>";
                   } else {
                     echo "<p>Contraseña incorrecta</p>";
                   } 
